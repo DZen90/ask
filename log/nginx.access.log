@@ -17,3 +17,6 @@
 127.0.0.1 - - [04/Mar/2018:23:55:09 +0300] "GET /uploads/ HTTP/1.1" 403 140 "-" "Mozilla/5.0 (X11; Linux i686; rv:52.0) Gecko/20100101 Firefox/52.0"
 127.0.0.1 - - [04/Mar/2018:23:59:26 +0300] "GET /uploads/ HTTP/1.1" 403 140 "-" "Mozilla/5.0 (X11; Linux i686; rv:52.0) Gecko/20100101 Firefox/52.0"
 127.0.0.1 - - [05/Mar/2018:00:05:30 +0300] "GET /uploads/ HTTP/1.1" 200 53 "-" "Mozilla/5.0 (X11; Linux i686; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [14/Mar/2018:07:34:00 +0300] "GET / HTTP/1.1" 404 143 "-" "Mozilla/5.0 (X11; Linux i686; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [14/Mar/2018:07:34:06 +0300] "GET /hello HTTP/1.1" 404 143 "-" "Mozilla/5.0 (X11; Linux i686; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [14/Mar/2018:07:34:09 +0300] "GET /hello HTTP/1.1" 404 143 "-" "Mozilla/5.0 (X11; Linux i686; rv:52.0) Gecko/20100101 Firefox/52.0"
