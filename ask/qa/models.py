@@ -7,10 +7,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class QuestionManager(models.Manager):
-    def new():
+    def new(self):
         return Question.objects.order_by('-added_at') # return latest added question
 
-    def popular():
+    def popular(self):
         return Question.objects.order_by('-rating') # return the most popular questions
 
 class Question(models.Model):
