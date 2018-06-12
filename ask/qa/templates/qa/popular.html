@@ -1,0 +1,19 @@
+<h1>The t popular questions:</h1>
+<ul>
+{% for q in questions %}
+    <li>
+        <a href="/question/{{ q.id }}">{{ q.title }}</a>	   
+    </li>
+{% endfor %}
+</ul>
+<nav><ul class="pagination">
+{% for p in paginator.page_range %}
+    {% if p == page.number %}
+    <li class="active">
+    {% else %}
+    <li>
+    {% endif %}
+        <a href="{{ paginator.baseurl }}{{ p }}">{{ p }}</a>
+    </li>
+{% endfor %}
+</ul></nav>
