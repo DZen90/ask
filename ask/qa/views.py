@@ -50,7 +50,7 @@ def question_details(request, question_id):
             return HttpResponseRedirect(url)
     else:
         # if user reaches the route via GET - by opening a question
-        form = AnswerForm(initial={'question_id': question_id})
+        form = AnswerForm(initial={'question': question_id})
 
     return render(request, 'qa/question_details.html', {
         'question': question,
