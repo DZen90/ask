@@ -8,7 +8,7 @@ class AskForm(forms.Form):
     
     def save(self):
         question = Question(**self.cleaned_data)
-        question.author_id = 121 # Random user for test
+        question.author_id = 121 # Random user for test, CHANGE IF new database
         question.save()
         return question
 
@@ -18,6 +18,6 @@ class AnswerForm(forms.Form):
 
     def save(self):
         answer = Answer(**self.cleaned_data)
-        answer.author_id = 121 # Random user for test
+        answer.author_id = 121 # Random user for test, CHANGE IF new database
         answer.save()
         return answer
