@@ -4,10 +4,13 @@ from __future__ import unicode_literals
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 from django import forms
-
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
+#from django.contrib.auth.forms import UserCreationForm
 from .models import Question, Answer
-from .forms import AskForm, AnswerForm
+from .forms import AskForm, AnswerForm, SignupForm, LoginForm
 
 # Create your views here.
 def test(request, *args, **kwargs):
@@ -44,6 +47,7 @@ def question_details(request, question_id):
     answers_list = Answer.objects.filter(question_id=question_id)
     if request.method == "POST":
         form = AnswerForm(request.POST)
+        form._user = request.user
         if form.is_valid():
             answer = form.save()
             url = question.get_url()
@@ -61,6 +65,7 @@ def question_details(request, question_id):
 def ask(request):
     if request.method == "POST":
         form = AskForm(request.POST)
+        form._user = request.user
         if form.is_valid():
             question = form.save()
             url = question.get_url()
@@ -70,5 +75,40 @@ def ask(request):
         form = AskForm()
     return render(request, 'qa/ask_form.html', {'form': form})
 
+def signup(request):
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        #form = UserCreationForm(request.POST)
+        if form.is_valid():
+            #TODO
+            # must implement new user registration here
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            url = reverse('index')
+            return HttpResponseRedirect(url)
+    else:
+        # if user reaches via GET - show form
+        form = SignupForm()
+        #form = UserCreationForm()
+    return render(request, 'qa/signup_form.html', {'form': form})
 
-
+def signin(request):
+    messages = []
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=raw_password)
+            if user is not None:
+                login(request, user)
+                url = reverse('index')
+                return HttpResponseRedirect(url)
+            else:
+                messages.append("Incorrent username or password")
+    else:
+        form = LoginForm()
+    return render(request, 'qa/login_form.html', {'form': form, 'messages': messages})
