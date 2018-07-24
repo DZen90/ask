@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block content %}        
 {% for e in form.non_field_errors %}
 <div class="alert alert-danger">{{ e }}</div>
 {% endfor %}
-<h1>Login</h1>
+<h1>Change password</h1>
 {% if messages %}
     <ul>
         {% for message in messages %}
@@ -12,21 +11,18 @@
         {% endfor %}	
     </ul>
 {% endif %}
-<form class="form-horizontal" method="post" action="/login/">
+<form class="form-horizontal" method="post" action="/change_password/">
     {% csrf_token %}
     <fieldset>
         {% for field in form %}
-	<div class="control-group{% if field.errors %}has-error{% endif %}">
+	<div class="control-group{% if field.errors %} has-error{% endif %}">
 	    <label class="control-label">{{ field.label }}</label>
 	    <div class="control">{{ field }}</div>
 	</div>
         {% endfor %}	
     </fieldset>
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary fields-valid">Login</button>	    
+        <button type="submit" class="btn btn-primary password-confirm">Change</button>	    
     </div>	    
 </form>
-{% endblock %}
-{% block javascript %}
-    <script src="{% static 'qa/js/login.js' %}"></script>
 {% endblock %}

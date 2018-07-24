@@ -1,5 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}        
 <h1>{{ question.title }}</h1>
 <p>{{ question.text }}</p>
+<i id="like" 
+   class={% if liked_by_user %} "fa fa-thumbs-down" {% else %} "fa fa-thumbs-up" {% endif %} 
+   question_id="{{ question.id }}">{{ likes_count }}</i>
 <h1>Answers:</h1>
 <ul>
 {% for answer in answers %}
@@ -7,22 +12,23 @@
 {% endfor %}
 </ul>
 {% for e in form.non_field_errors %}
-<div class="alert alert-danger">{{ e }}</div>
+    <div class="alert alert-danger">{{ e }}</div>
 {% endfor %}
 <h2>Your answer:</h2>
 <form class="form-horizontal" method="post" action="/question/{{ question.id }}/">
-    {% csrf_token %}
+{% csrf_token %}
     <fieldset>
-        {% for field in form %}
-	<div class="control-group{% if field.errors %}has-error{% endif %}">
-	    {% if not field.is_hidden %}
+    {% for field in form %}
+        <div class="control-group{% if field.errors %}has-error{% endif %}">
+        {% if not field.is_hidden %}
 	    <label class="control-label">{{ field.label }}</label>
-	    {% endif %}
-	    <div class="control">{{ field }}</div>
-	</div>
-        {% endfor %}	
+        {% endif %}
+        <div class="control">{{ field }}</div>
+        </div>
+    {% endfor %}	
     </fieldset>
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save</button>	    
     </div>	    
 </form>
+{% endblock %}
