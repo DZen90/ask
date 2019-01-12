@@ -41,6 +41,10 @@
                         <li class="navbar-item"><a class="nav-link" href="{% url 'popular' %}">Popular questions</a></li>
                         <li class="navbar-item"><a class="nav-link" href="{% url 'ask' %}">Ask a question</a></li>
                     </ul>
+    		    <form class="form-inline my-2 my-lg-0 ml-auto">
+                        <input class="form-control mr-sm-0" type="search" id="q" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit"><span class="fa fa-search"></span></button>
+                   </form>
                     <ul class="nav navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                         <li class="navbar-item dropdown">
@@ -71,6 +75,11 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous">
         </script>
         <!-- <script src="{% static 'qa/js/scripts.js' %}"></script> -->
+        <!-- https://github.com/corejavascript/typeahead.js -->
+        <script src="{% static 'qa/js/typeahead.jquery.js' %}"></script>
+        <!-- http://handlebarsjs.com/ -->
+        <script src="{% static 'qa/js/handlebars.js' %}"></script>
+        <script src="{% static 'qa/js/common_scripts.js' %}"></script>
         {% block javascript %}
         {% endblock %}
     </body>

@@ -13,6 +13,8 @@ class QuestionManager(models.Manager):
 
     def popular(self):
         return Question.objects.order_by('-rating') # return the most popular questions
+    def search(self, query):
+        return Question.objects.filter(title__icontains = query) # return questions whose title matches search query
 
 class Question(models.Model):
     title = models.CharField(max_length=200)

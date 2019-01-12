@@ -14,4 +14,5 @@ urlpatterns = [
         url(r'^ask/', views.ask, name='ask'),
         url(r'^popular/', views.popular, name='popular'),
         url(r'^like/', views.like, name='like'),
+        url(r'^search/', views.search, name='search'),
 ]

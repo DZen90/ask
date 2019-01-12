@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
+from django.core import serializers
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django import forms
@@ -156,3 +157,28 @@ def change_password(request):
     else:
         form = ChangepassForm()
     return render(request, 'qa/changepass_form.html', {'form': form, 'messages': messages})
+
+def search(request):
+    # TODO
+    # Implement search for questions
+    query = request.GET.get('q', '')
+    is_ajax = request.GET.get('ajax', '')
+    search_results = Question.objects.search(query)
+    if is_ajax == "true":
+        #return JsonResponse(ctx, safe=False)
+        ctx = serializers.serialize('json', list(search_results), fields=('id', 'title'))
+        return HttpResponse(ctx)
+    else:
+        limit = 10
+        page = request.GET.get('page', 1)
+        paginator = Paginator(search_results, limit)
+        paginator.baseurl = '/search/?page='
+        page = paginator.page(page)
+        return render(request, 'qa/search_results.html', {
+            'query': query,
+            'results': search_results,
+            'paginator': paginator,
+            'page': page,
+        })
+
+
