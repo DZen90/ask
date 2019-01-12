@@ -2,5 +2,9 @@
     /* center contents */
     margin-left: auto;
     margin-right: auto;
-    /*text-align: center;
+    /*text-align: center; */
+}
+#scrollable-dropdown-menu .tt-dropdown-menu {
+  max-height: 150px;
+  overflow-y: auto;
 }

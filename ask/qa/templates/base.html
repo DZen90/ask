@@ -41,8 +41,8 @@
                         <li class="navbar-item"><a class="nav-link" href="{% url 'popular' %}">Popular questions</a></li>
                         <li class="navbar-item"><a class="nav-link" href="{% url 'ask' %}">Ask a question</a></li>
                     </ul>
-    		    <form class="form-inline my-2 my-lg-0 ml-auto">
-                        <input class="form-control mr-sm-0" type="search" id="q" placeholder="Search" aria-label="Search">
+    		    <form class="form-inline my-2 my-lg-0 ml-auto" action="/search" method="get">
+                        <div id="scrollable-dropdown-menu"><input class="typeahead form-control mr-sm-0" type="text" id="q" name="q" placeholder="Search" aria-label="Search"></div>
                         <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit"><span class="fa fa-search"></span></button>
                    </form>
                     <ul class="nav navbar-nav ml-auto">
